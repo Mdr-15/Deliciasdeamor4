@@ -721,35 +721,41 @@
         </div>
     </footer>
 
-    <div id="modal-postre" class="modal-contenedor">
-        <div class="modal-cristal">
-            <button class="modal-cerrar">&times;</button>
-            <div class="modal-contenido-grid">
-                <div class="modal-img-zona">
-                    <img id="modal-imagen" src="" alt="Detalle del Postre">
-                </div>
-           <div class="modal-info-zona">
-    <span id="modal-categoria" class="modal-mini-tag">Repostería Fina</span>
-    <h3 id="modal-titulo">Título del Postre</h3>
-    
-    <!-- NUEVO: Bloque dinámico para porciones en el modal -->
-    <div id="modal-bloque-porciones" style="margin-bottom: 15px; font-size: 0.85rem; color: var(--txt-mutado); display: none;">
-        <span>Rinde de forma ideal: <strong id="modal-porciones-texto" style="color: var(--olivo-premium);"></strong> porciones</span>
-    </div>
-
-    <div class="modal-divisor"></div>
-    <p id="modal-descripcion">Descripción detallada.</p>
-    <div class="modal-compra-bloque">
-        <span id="modal-precio" class="modal-precio-texto">$0.00</span>
-        <a id="modal-btn-whatsapp" href="#" target="_blank" class="btn-pedido-gourmet">
-            Ordenar por WhatsApp
-        </a>
-    </div>
-</div>
-
+    <!-- VENTANA MODAL PREMIUM PARA DETALLES COMPLETA -->
+<div id="modal-postre" class="modal-contenedor">
+    <div class="modal-cristal">
+        <button class="modal-cerrar">&times;</button>
+        <div class="modal-contenido-grid">
+            
+            <div class="modal-img-zona">
+                <img id="modal-imagen" src="" alt="Detalle del Postre">
             </div>
-        </div>
-    </div>
+            
+            <div class="modal-info-zona">
+                <span id="modal-categoria" class="modal-mini-tag">Repostería Fina</span>
+                <h3 id="modal-titulo">Título del Postre</h3>
+                
+                <!-- Bloque dinámico para porciones en el modal -->
+                <div id="modal-bloque-porciones" style="margin-bottom: 15px; font-size: 0.85rem; color: var(--txt-mutado); display: none;">
+                    <span>Rinde de forma ideal: <strong id="modal-porciones-texto" style="color: var(--olivo-premium);"></strong> porciones</span>
+                </div>
+
+                <div class="modal-divisor"></div>
+                <p id="modal-descripcion">Descripción detallada.</p>
+                
+                <div class="modal-compra-bloque">
+                    <span id="modal-precio" class="modal-precio-texto">$0.00</span>
+                    <a id="modal-btn-whatsapp" href="#" target="_blank" class="btn-pedido-gourmet">
+                        Ordenar por WhatsApp
+                    </a>
+                </div>
+            </div> <!-- Cierre de modal-info-zona -->
+
+        </div> <!-- Cierre de modal-contenido-grid -->
+    </div> <!-- Cierre de modal-cristal -->
+</div> <!-- Cierre de modal-contenedor -->
+  
+    
     <script>
         const servidorGoogle = "https://docs.google.com/spreadsheets/d/";
         const idDocumento = "1P8ZaGNzjn1zPa0eZXbz20L4CpFl8zoF862Fxo8uQAeo";
@@ -848,15 +854,21 @@
 `;
 
 
-                tarjeta.querySelector('.producto-titulo').textContent = prod.nombre;
-                tarjeta.querySelector('.descripcion').textContent = prod.descripcion;
-                if(prod.porciones) { tarjeta.querySelector('.porciones-texto').textContent = prod.porciones; }
-                fragmento.appendChild(tarjeta);
-            });
-
-            contenedor.appendChild(fragmento);
-            setTimeout(dispararAnimacionEntrada, 50);
+                        tarjeta.querySelector('.producto-titulo').textContent = prod.nombre;
+        tarjeta.querySelector('.descripcion').textContent = prod.descripcion;
+        
+        // Inyecta el número de porciones de forma segura si el campo no viene vacío
+        if (prod.porciones) { 
+            tarjeta.querySelector('.porciones-texto').textContent = prod.porciones; 
         }
+
+        fragmento.appendChild(tarjeta);
+    });
+
+    contenedor.appendChild(fragmento);
+    setTimeout(dispararAnimacionEntrada, 50);
+}
+
 
         function configurarFiltros() {
             const botonesFiltro = document.querySelectorAll('.btn-filtro');
