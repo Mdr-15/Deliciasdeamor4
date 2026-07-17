@@ -282,17 +282,18 @@
             font-weight: 500;
         }
 
-        /* 2. CONFIGURACIÓN DE GRID FLUIDA PARA MÁXIMAS TARJETAS */
+       /* 1. HACER LAS COLUMNAS MÁS ANCHAS */
 .catalogo-grid {
     display: grid;
-    /* Permite que las columnas se creen automáticamente de forma infinita */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 280px)); 
-    gap: 35px; 
+    /* Subimos el ancho de 260px/280px a un rango de 300px a 340px */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 340px)); 
+    gap: 30px; 
     width: 100% !important;
-    max-width: 100% !important; /* Utiliza todo el espacio horizontal disponible */
+    max-width: 100% !important;
     margin: 0 auto;
-    justify-content: center; /* Centra el bloque total en pantallas gigantes */
+    justify-content: center;
 }
+
 
         /* --- TARJETAS E INTERACCIONES --- */
         .tarjeta-postre {
@@ -341,13 +342,14 @@
             opacity: 1 !important;
         }
 
-        .img-contenedor {
-            width: 100%;
-            height: 320px;
-            overflow: hidden;
-            background-color: #eeeae4;
-            position: relative;
-        }
+        /* 2. HACER LAS IMÁGENES MENOS LARGAS (MÁS BAJAS) */
+.img-contenedor {
+    width: 100%;
+    height: 200px; /* Reducido de 240px a 200px para hacerla más horizontal */
+    overflow: hidden;
+    background-color: #eeeae4;
+    position: relative;
+}
 
         .img-contenedor::after {
             content: "";
@@ -360,6 +362,18 @@
             transform: skewX(-25deg);
             transition: 0.75s;
         }
+
+        /* 3. CONTROLAR LA ALTURA DEL TEXTO PARA COMPACTAR LA TARJETA */
+.tarjeta-info p.descripcion {
+    color: var(--txt-mutado);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+    /* Limita el texto a un alto fijo; si hay más texto, activa scroll interno discreto */
+    height: 65px; 
+    overflow-y: auto; 
+    padding-right: 5px;
+}
 
         .tarjeta-postre:hover .img-contenedor::after {
             left: 125%;
