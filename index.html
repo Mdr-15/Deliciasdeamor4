@@ -836,6 +836,7 @@
 
                 tarjeta.querySelector('.producto-titulo').textContent = prod.nombre;
                 tarjeta.querySelector('.descripcion').textContent = prod.descripcion;
+                if(prod.porciones) { tarjeta.querySelector('.porciones-texto').textContent = prod.porciones; }
                 fragmento.appendChild(tarjeta);
             });
 
