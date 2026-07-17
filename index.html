@@ -890,25 +890,38 @@
             }, 250);
         }
 
-        function abrirModal(indice) {
-            const prod = productos[indice];
-            if (!prod) return;
+   function abrirModal(indice) {
+    const prod = productos[indice];
+    if (!prod) return;
 
-            const modal = document.getElementById('modal-postre');
-            const precioFormateado = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(prod.precio);
+    const modal = document.getElementById('modal-postre');
+    const precioFormateado = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(prod.precio);
 
-            document.getElementById("modal-imagen").src = prod.imagen;
-            document.getElementById("modal-imagen").alt = prod.nombre;
-            document.getElementById("modal-categoria").textContent = prod.categoria;
-            document.getElementById("modal-titulo").textContent = prod.nombre;
-            document.getElementById("modal-descripcion").textContent = prod.descripcion;
-            document.getElementById("modal-precio").textContent = precioFormateado;
+    // Inyección de textos básicos de Google Sheets
+    document.getElementById("modal-imagen").src = prod.imagen;
+    document.getElementById("modal-imagen").alt = prod.nombre;
+    document.getElementById("modal-categoria").textContent = prod.categoria;
+    document.getElementById("modal-titulo").textContent = prod.nombre;
+    document.getElementById("modal-descripcion").textContent = prod.descripcion;
+    document.getElementById("modal-precio").textContent = precioFormateado;
 
-            const mensajePlano = `Hola Delicias de Amor, me interesa ordenar el producto: ${prod.nombre} (${precioFormateado}).`;
-            document.getElementById("modal-btn-whatsapp").setAttribute('href', `https://wa.me{encodeURIComponent(mensajePlano)}`);
+    // CORRECCIÓN CRÍTICA: Lee y muestra dinámicamente las porciones en el modal
+    const bloquePorciones = document.getElementById("modal-bloque-porciones");
+    const textoPorciones = document.getElementById("modal-porciones-texto");
 
-            modal.classList.add('activo');
-        }
+    if (prod.porciones && String(prod.porciones).trim() !== "") {
+        textoPorciones.textContent = prod.porciones;
+        bloquePorciones.style.setProperty('display', 'block', 'important'); // Fuerza a mostrar el bloque
+    } else {
+        bloquePorciones.style.setProperty('display', 'none', 'important');  // Lo oculta si la celda está vacía
+    }
+
+    // Configuración del mensaje automatizado para WhatsApp
+    const mensajePlano = `Hola Delicias de Amor, me interesa ordenar el producto: ${prod.nombre} (${precioFormateado}).`;
+    document.getElementById("modal-btn-whatsapp").setAttribute('href', `https://wa.me{encodeURIComponent(mensajePlano)}`);
+
+    modal.classList.add('activo');
+}
 
         function inicializarScrollObserver() {
             const modal = document.getElementById('modal-postre');
