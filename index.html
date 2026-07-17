@@ -823,16 +823,23 @@
                 const precioFormateado = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(prod.precio);
 
                 tarjeta.innerHTML = `
-                    <div class="img-contenedor">
-                        <img src="${prod.imagen}" alt="${prod.nombre}" class="tarjeta-img" loading="lazy">
-                    </div>
-                    <div class="tarjeta-info">
-                        <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracota-acento); margin-bottom: 5px; display: block;">${prod.categoria}</span>
-                        <h3 class="producto-titulo"></h3>
-                        <p class="descripcion"></p>
-                        <div class="precio-tag">${precioFormateado}</div>
-                    </div>
-                `;
+    <div class="img-contenedor">
+        <img src="${prod.imagen}" alt="${prod.nombre}" class="tarjeta-img" loading="lazy">
+    </div>
+    <div class="tarjeta-info">
+        <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--terracota-acento); margin-bottom: 5px; display: block;">${prod.categoria}</span>
+        <h3 class="producto-titulo"></h3>
+        
+        <!-- Bloque para mostrar las porciones de forma elegante si existen -->
+        <div class="bloque-porciones" style="margin-bottom: 12px; font-size: 0.8rem; color: var(--txt-mutado); display: ${prod.porciones ? 'block' : 'none'};">
+            <span>Rinde: <strong class="porciones-texto"></strong> porciones</span>
+        </div>
+
+        <p class="descripcion"></p>
+        <div class="precio-tag">${precioFormateado}</div>
+    </div>
+`;
+
 
                 tarjeta.querySelector('.producto-titulo').textContent = prod.nombre;
                 tarjeta.querySelector('.descripcion').textContent = prod.descripcion;
