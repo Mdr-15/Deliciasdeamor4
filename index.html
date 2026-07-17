@@ -39,11 +39,12 @@
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-        }
+        /* 1. EXPANDIR EL CONTENEDOR BASE DE LA PÁGINA */
+.container {
+    max-width: 100% !important; /* Rompe el límite anterior de 1200px */
+    margin: 0 auto;
+    padding: 0 40px; /* Mantiene un colchón elegante en los bordes de la pantalla */
+}
 
         /* --- SISTEMA NATIVO DE ANIMACIÓN FLUIDA --- */
         .fade-in-scroll {
@@ -281,14 +282,17 @@
             font-weight: 500;
         }
 
-        .catalogo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 360px)); /* Forzado simétrico antiedeformación */
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-            justify-content: center;
-        }
+        /* 2. CONFIGURACIÓN DE GRID FLUIDA PARA MÁXIMAS TARJETAS */
+.catalogo-grid {
+    display: grid;
+    /* Permite que las columnas se creen automáticamente de forma infinita */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 280px)); 
+    gap: 35px; 
+    width: 100% !important;
+    max-width: 100% !important; /* Utiliza todo el espacio horizontal disponible */
+    margin: 0 auto;
+    justify-content: center; /* Centra el bloque total en pantallas gigantes */
+}
 
         /* --- TARJETAS E INTERACCIONES --- */
         .tarjeta-postre {
