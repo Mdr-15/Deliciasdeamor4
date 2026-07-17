@@ -473,23 +473,32 @@
             transform: translateY(0);
         }
 
-        .modal-cerrar {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            background: transparent;
-            border: none;
-            font-size: 2.2rem;
-            color: var(--txt-primario);
-            cursor: pointer;
-            z-index: 10;
-            transition: color 0.3s;
-            line-height: 1;
-        }
+       /* --- BOTÓN CERRAR MODAL CORREGIDO --- */
+.modal-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #ffffff; /* Añade un fondo blanco sólido para que no se mezcle con la imagen */
+    border: 1px solid var(--borde-organico);
+    font-size: 1.8rem;
+    color: var(--txt-primario);
+    cursor: pointer;
+    z-index: 2100 !important; /* Fuerza una prioridad máxima por encima de cualquier capa */
+    line-height: 1;
+    width: 40px; /* Crea un área de clic circular perfecta para el dedo */
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(63, 78, 79, 0.12); /* Sombra suave para que resalte */
+    transition: all 0.3s ease;
+}
 
-        .modal-cerrar:hover {
-            color: var(--terracota-acento);
-        }
+.modal-cerrar:hover {
+    color: var(--terracota-acento);
+    transform: scale(1.05);
+}
 
         .modal-contenido-grid {
             display: grid;
