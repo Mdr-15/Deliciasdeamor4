@@ -61,13 +61,13 @@
             transition-delay: var(--delay, 0ms);
         }
         /* --- HERO SECTION REESTRUCTURADO --- */
-        .hero {
-            padding: 60px 0 80px 0; /* Compactado el espacio superior */
-            min-height: 45vh;       /* Altura óptima para evitar huecos en blanco */
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
+.hero {
+    padding: 30px 0 20px 0; /* Reducido drásticamente arriba y abajo */
+    min-height: auto;       /* Eliminamos el alto forzado de 45vh para que se compacte */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
 
         .hero::before {
             content: "";
@@ -186,7 +186,7 @@
 
         /* --- SECCIÓN VALORES --- */
         .detalles-iconos {
-            padding: 50px 0;
+            padding: 30px 0;
             background-color: transparent;
             border-top: 1px solid var(--borde-organico);
         }
@@ -244,7 +244,7 @@
 
         /* --- SECCIÓN CATÁLOGO --- */
         .seccion-catalogo {
-            padding: 120px 0;
+            padding: 60px 0;
             background-color: var(--bg-tarjeta);
             border-top: 1px solid var(--borde-organico);
         }
